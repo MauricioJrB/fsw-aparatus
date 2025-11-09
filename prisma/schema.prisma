@@ -14,41 +14,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model BarberShop {
-  id          String   @id @default(uuid())
+model Barbershop {
+  id          String              @id @default(uuid())
   name        String
   address     String
   description String
   imageUrl    String
   phones      String[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  services BarberShopService[]
+  services    BarbershopService[]
 }
 
-model BarberShopService {
-  id           String @id @default(uuid())
-  barberShopId String
+model BarbershopService {
+  id           String     @id @default(uuid())
   name         String
   description  String
+  barbershopId String
+  barbershop   Barbershop @relation(fields: [barbershopId], references: [id])
+  imageUrl     String
   priceInCents Int
-
-  barberShop BarberShop @relation(fields: [barberShopId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model Booking {
   id           String    @id @default(uuid())
   serviceId    String
-  barberShopId String
+  barbershopId String
   date         DateTime  @db.Timestamptz
   cancelled    Boolean?  @default(false)
   cancelledAt  DateTime? @db.Timestamptz
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
