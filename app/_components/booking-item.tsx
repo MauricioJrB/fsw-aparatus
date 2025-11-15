@@ -10,12 +10,7 @@ interface BookingItemProps {
   date: Date;
 }
 
-const BookingItem = ({
-  serviceName,
-  barbershopName,
-  barbershopImageUrl,
-  date,
-}: BookingItemProps) => {
+const BookingItem = ({ barbershopName, barbershopImageUrl, date }: BookingItemProps) => {
   return (
     <Card className="flex h-full w-full min-w-full flex-row items-center justify-between p-0">
       {/* Left Section */}

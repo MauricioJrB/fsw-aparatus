@@ -43,13 +43,14 @@ const Home = async () => {
           />
         </PageSection>
 
+        {/* Composition Pattern */}
         <PageSection>
           <PageSectionTitle>Recomendados</PageSectionTitle>
-          <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+          <PageSectionScroller>
             {recommendedBarbershops.map((barbershop) => (
               <BarbershopItem key={barbershop.id} barbershop={barbershop} />
             ))}
-          </div>
+          </PageSectionScroller>
         </PageSection>
 
         <PageSection>
